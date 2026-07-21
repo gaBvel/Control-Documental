@@ -1,0 +1,50 @@
+<!-- Modal perfil del usuario -->
+<div class="modal-overlay" id="modalPerfil">
+    <div class="profile-modal">
+        <!--Boton para cerrar modal-->
+        <button type="button" class="close-modal" id="closePerfil" aria-label="Cerrar Modal">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- Encabezado del perfil -->
+        <div class="profile-header">
+            <div class="profile-image">
+                <% if (locals.usuario && usuario.fotoUrl) { %>
+                    <img src="" alt="" class="avatar-img">
+                <% } else { %>
+                    <i class="fa-solid fa-user"></i>
+                <% } %>
+            </div>
+
+            <h3><%= (locals.usuario && usuario.nombre) ? usuario.nombre : "Usuario" %></h3>
+            <p class="profile-subtitle"><%= (locals.usuario && usuario.area) ? usuario.area: "Sin Area asignada" %></p>
+        </div>
+
+        <!-- Cuerpo con los datos -->
+        <div class="profile-body">
+            <div class="profile-item">
+                <label><i class="fa-solid fa-id-card"></i> Nombre Completo</label>
+                <span><%= (locals.usuario && usuario.nombre) ? usuario.nombre : "-" %></span>
+            </div>
+
+            <div class="profile-item">
+                <label><i class="fa-solid fa-envelope"></i> Correo electronico</label>
+                <span><%= (locals.usuario && usuario.email) ? usuario.email: "-" %></span>
+            </div>
+
+            <div class="profile-item">
+                <label><i class="fa-solid fa-building"></i> Area</label>
+                <span><%= (locals.usuario && usuario.area) ? usuario.area : "-" %></span>
+            </div>
+
+            <div class="profile-item">
+                <label><i class="fa-solid fa-briefcase"></i> Puesto</label>
+                <span><%= (locals.usuario && usuario.puesto) ? usuario.puesto : "-" %></span>
+            </div>
+        </div>
+
+        <div class="profile-footer">
+            <button type="button" class="btn-secondary" id="btnCerrarPerfil">Cerrar</button>
+        </div>
+    </div>
+</div>

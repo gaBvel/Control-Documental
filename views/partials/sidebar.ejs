@@ -1,0 +1,70 @@
+<!-- SIDEBAR COMPONENT -->
+<aside class="sidebar" id="sidebar">
+
+    <!-- 1. PARTE SUPERIOR: Logo y Proyecto -->
+    <div class="sidebar-header">
+        <div class="logo">
+            <!-- Muestra logo personalizado o un ícono por defecto -->
+            <% if (locals.logoUrl) { %>
+                <img src="<%= logoUrl %>" alt="Logo" class="logo-img">
+            <% } else { %>
+                <i class="fa-solid fa-folder-open logo-icon"></i>
+            <% } %>
+        </div>
+        <div class="logo-text">
+            <h2><%= locals.appAcronym || 'SCD' %></h2>
+            <span><%= locals.appName || 'Sistema de Control Documental' %></span>
+        </div>
+        <!-- Botón para retraer / expandir el sidebar -->
+        <button type="button" class="toggle-sidebar-btn" id="toggleSidebar" aria-label="Toggle Sidebar">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+    </div>
+
+    <!-- 2. PARTE INTERMEDIA: Botones dinámicos de navegación -->
+    <nav class="sidebar-menu">
+        <ul>
+            <% if (locals.menuItems && menuItems.length > 0) { %>
+                <% menuItems.forEach(item => { %>
+                    <li>
+                        <a href="<%= item.link %>" class="menu-btn <%= item.active ? 'active' : '' %>">
+                            <i class="<%= item.icon || 'fa-solid fa-circle' %>"></i>
+                            <span class="menu-text"><%= item.label %></span>
+                        </a>
+                    </li>
+                <% }); %>
+            <% } else { %>
+                <!-- Menú por defecto en caso de no enviar ningún arreglo -->
+                <li>
+                    <a href="/dashboard" class="menu-btn active">
+                        <i class="fa-solid fa-house"></i>
+                        <span class="menu-text">Inicio</span>
+                    </a>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+
+    <!-- 3. PARTE INFERIOR: Perfil y Logout -->
+    <div class="sidebar-footer">
+        <button class="user-card" id="btnPerfil" type="button" onclick="window.location.href='/perfil'">
+            <div class="user-avatar">
+                <% if (locals.user && user.avatar) { %>
+                    <img src="<%= user.avatar %>" alt="Avatar" class="avatar-img">
+                <% } else { %>
+                    <i class="fa-solid fa-user"></i>
+                <% } %>
+            </div>
+
+            <div class="user-information">
+                <span class="user-name"><%= (locals.user && user.nombre) ? user.nombre : 'Usuario' %></span>
+                <span class="user-role"><%= (locals.user && user.rol) ? user.rol : 'Invitado' %></span>
+            </div>
+        </button>
+
+        <a href="/logout" class="logout-btn" title="Cerrar Sesión">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span class="logout-text">Cerrar Sesión</span>
+        </a>
+    </div>
+</aside>
