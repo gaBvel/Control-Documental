@@ -1,0 +1,37 @@
+<table>
+    <thead>
+        <tr>
+            <th>Inventarios</th>
+            <th>Tipo</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% if (inventarios && inventarios.length > 0) { %>
+            <% inventarios.forEach(item => { %>
+                <tr>
+                    <td><%= item.nombre %></td>
+                    <td><%= item.tipo %></td>
+                    <td><%= item.fecha %></td>
+                    <td>
+                        <span class="status <%= item.estado.toLowCase() %>">
+                            <%= item.estado %>
+                        </span>
+                    </td>
+                    <td>
+                        <a href="/usuario/inventario/<%= item.id %>" class="btn-ver">
+                            <i class="fa-solid fa-eye"></i> Ver
+                        </a>
+                    </td>
+                </tr>
+            <% }) %>
+        <% } else { %>
+            <tr>
+                <td colspan="5" style="text-align: center;">No hay inventarios registrados.</td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>

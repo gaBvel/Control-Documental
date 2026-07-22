@@ -1,0 +1,34 @@
+<!-- Tarjetas -->
+<section class="cards">
+    <div class="card">
+        <i class="fa-solid fa-file"></i>
+        <div>
+            <h2><%= (stats && stats.borradores) || 0 %></h2>
+            <p>Borradores</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <i class="fa-solid fa-paper-palne"></i>
+        <div>
+            <h2><%= (stats && stats.enviados) || 0 %></h2>
+            <p>Enviados</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <i class="fa-solid fa-circle-check"></i>
+        <div>
+            <h2><%= (stats && stats.aprobados) || 0 %></h2>
+            <p>Aprobados</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <i class="fa-solid fa-xmark"></i>
+        <div>
+            <h2><%= (stats && stats.rechazados) || 0 %></h2>
+            <p>Rechazados</p>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,28 @@
+<% if (documentos && documentos.length > 0) { %>
+    <% documentos.forEach(doc => { %>
+        <div class="document">
+            <div class="info">
+                <i class="<%= doc.icono || 'fa-solid fa-file' %>"></i>
+                <div>
+                    <h3><%= doc.titulo %></h3>
+                    <p><%= doc.descripcion %></p>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="<%= doc.rutaUrl %>" target="_blank">
+                    <button class="btn-ver">
+                        Ver Documento
+                    </button>
+                </a>
+                <button class="btn-leido" data-id="<%= doc.id %>">
+                    Marcar como leido
+                </button>
+            </div>
+        </div>
+    <% }) %>
+<% } else { %>
+    <div class="document">
+        <p>No hay documentos de Normatividad disponibles en este momento.</p>
+    </div>
+<% } %>

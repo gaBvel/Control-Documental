@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title || 'SCD | Panel Usuario'</title>
+    <link rel="icon" href="#">
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="#">
+</head>
+<body>
+    <!-- contenedor principal -->
+    <div class="main-container">
+        <!-- sidebar -->
+        <%- include('../partials/sidebar.ejs', {usuario: usuario}) %>
+
+        <!-- contenido -->
+        <main class="content">
+            <!-- header -->
+            <%- include('../partials/header', {usuario: usuario}) %>
+            
+            <!-- tarjetas -->
+            <%- include('../partials/cardStats', {stats: stats}) %>
+            
+            <!-- tabla -->
+            <section class="table">
+                <div class="title">
+                    <h2>Mis Inventarios</h2>
+                    <a href="/usuario/inventario">
+                        <button>
+                            <i class="fa-solid fa-plus"></i>
+                            Nuevo Inventario
+                        </button>
+                    </a>
+                </div>
+
+                <!-- Tabla de inventarios -->
+                <%- include('../partials/tablaInventario', {inventarios: inventarios}) %>
+            </section>
+        </main>
+    </div>
+
+    <!-- modal perfil -->
+    <%- include('../partials/modalPerfil', {usuario: usuario}) %>
+
+    <!-- scripts -->
+    <script src="/public/js/sidebar.js"></script>
+    <script src="/public/js/modalPerfil.js"></script>
+</body>
+</html>
+
