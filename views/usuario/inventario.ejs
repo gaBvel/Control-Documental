@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title || 'SCD | Inventario' %></title>
+
+    <link rel="icono" href="#">
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="#">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <%- include('../partials/sidebar', { usuario: usuario, paginaActiva: 'inventario' }) %>
+
+        <main class="content">
+            <!-- Seleccion tipo de inventario documental -->
+            <section id="seleccionInventario">
+                <header>
+                    <h1>
+                        <i class="fa-solid fa-folder-tree"></i>
+                        Inventario Documental
+                    </h1>
+                    <p>Seleccione el tipo de Inventario que desea registrar.</p>
+                </header>
+
+                <div class="options">
+                    <!-- Antes de la Ley -->
+                    <div class="option">
+                        <i class="fa-solid fa-file-circle-check"></i>
+                        <h3>Antes de la Ley de Archivos</h3>
+                        <p>Inventario de documentos generados antes de la Ley de Archivo del Estado de Hidalgo.</p>
+                        <button onclick="iniciarInventario('Antes de la Ley')">
+                            Iniciar
+                        </button>
+                    </div>
+
+                    <!-- Depues de la Ley -->
+                    <div class="option">
+                        <i class="fa-solid fa-file-shield"></i>
+                        <h3>Despues de la Ley de Archivos</h3>
+                        <p>Inventario realizado bajo los lineamientos actuales de gestion documental.</p>
+                        <button onclick="iniciarInventario('Despues de la Ley')">
+                            Iniciar
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal perfil -->
+    <%- include('../partials/modalPerfil', { usuario: usuario }) %>
+
+    <!-- Scripts -->
+    <script src="#"></script>
+    <script src="/public/js/sidebar.js"></script>
+    <script src="/public/js/modalPerfil.js"></script>
+</body>
+</html>
