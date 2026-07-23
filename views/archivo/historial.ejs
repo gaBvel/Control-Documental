@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title | 'SCD | Historial' %></title>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <%- include('../partials/sidebar', { usuario: usuario, paginaActiva: 'archivo-historial' }) %>
+
+        <main class="content">
+            <!-- Tarjetas -->
+            <section class="cards">
+                <div class="card">
+                    <i class="fa-solid fa-folder-open"></i>
+                    <div>
+                        <h2><% typeof stats !== 'undefined' ? stats.total: (inventarios ? inventarios.length : 0) %></h2>
+                        <p>Total Registrados</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div>
+                        <h2><% typeof stats !== 'undefined' ? stats.aprobados : (inventarios ? inventarios.filter(i => i.estado === 'Aprobado').length : 0) %></h2>
+                        <p>Aprobados</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                    <div>
+                        <h2><% typeof stats !== 'undefined' ? stats.rechazos : (inventarios ? inventarios.filter(i => i.estado === 'Rechazado').length : 0) %></h2>
+                        <p>Rechazados</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-clock"></i>
+                    <div>
+                        <h2><% typeof stats !== 'undefined' ? stats.pendientes : (inventarios ? inventarios.filter(i => i.estado === 'Pendiente').length : 0) %></h2>
+                        <p>Pendientes</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tabla historial -->
+            <section class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Folio</th>
+                            <th>Usuario</th>
+                            <th>Tipo de Documento</th>
+                            <th>Fecha Envio</th>
+                            <th> Fecha Revision</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% if (typeof inventarios !== 'undefined' && inventarios.length > 0) { %>
+                            <% inventarios.forEach(item => { %>
+                                <tr>
+                                    <td><%= item.folio %></td>
+                                    <td><%= item.usuario %></td>
+                                    <td><%= item.tipo %></td>
+                                    <td><%= item.fechaEnvio %></td>
+                                    <td><%= item.fechaRevision || '-' %></td>
+                                    <td>
+                                        <span class="badge badge-<%= item.estado.toLowerCase() %>">
+                                            <%= item.estado %>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a href="/archivo/inventario/<%= item.id %>" class="btn-action" title="Ver Detalle">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="7" style="text-align: center;">
+                                    No se encontraron inventarios en el historial
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal perfil -->
+    <%- include('../partials/modalPerfil', { usuario: usuario }) %>
+
+    <!-- Scripts -->
+    <script src="/public/js/sidebar.js"></script>
+    <script src="/public/js/modalPerfil.js"></script>
+</body>
+</html>

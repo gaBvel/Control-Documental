@@ -22,6 +22,66 @@
                 </h1>
                 <p>Inventarios enviados por los usuarios para su validacion.</p>
             </header>
+
+            <section class="tarjeta">
+                <h2>Inventarios Pendientes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Usuarios</th>
+                            <th>Tipo Inventario</th>
+                            <th>Fecha de envio</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% if (typeof revisiones !== 'undefinied' && revision.length > 0) { %>
+                            <% revisiones.forEach(item => { %>
+                                <tr>
+                                    <td><%= item.usuario %></td>
+                                    <td><%= item.tipoInventario %></td>
+                                    <td><%= item.fechaEnvio %></td>
+                                    <td>
+                                        <span class="<%= item.estado.toLowerCase() %>">
+                                            <%= item.estado %>
+                                        </span>
+                                    </td>
+                                    <td class="actions">
+                                        <button class="ver" data-id="<%= item.id %>" title="Ver detalle">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </button>
+                                        <button class="aprobar" data-id="<%= item.id %>" title="Aprobar">
+                                            <i class="fa-solid fa-check"></i>
+                                        </button>
+                                        <button class="rechazar" data-id="<%= item.id %>" title="Rechazar">
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="5" style="text-align: center;">
+                                    No hay inventarios pendientes de revision.
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Observaciones -->
+            <section class="observations">
+                <h2>Observaciones</h2>
+                <form action="/archivo/revision/observacion" method="POST">
+                    <textarea name="observacion" placeholder="Escriba observaciones en caso de rechazo..." required></textarea>
+                    <button type="submit" class="save">
+                        Guardar observacion
+                    </button>
+                </form>
+            </section>
         </main>
     </div>
 
