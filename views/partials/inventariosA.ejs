@@ -1,0 +1,36 @@
+<!-- Tabla inventarios pendientes -->
+<table>
+    <thead>
+        <tr>
+            <th>Folio</th>
+            <th>Usuario</th>
+            <th>Tipo</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% if (typeof pendientes !== 'undefinied' && pendientes.length > 0) { %>
+            <% pendientes.forEach(inv => { %>
+                <tr>
+                    <td><%= inv.folio %></td>
+                    <td><%= inv.usuario %></td>
+                    <td><%= inv.tipo %></td>
+                    <td><%= inv.fecha %></td>
+                    <td>
+                        <span class="<%= inv.estado.toLowerCase() %>">
+                            <%= inv.estado %>
+                        </span>
+                    </td>
+                </tr>
+            <% }) %>
+        <% } else { %>
+            <tr>
+                <td colspan="5" style="text-align: center;">
+                    No hay inventarios pendientes por revisar.
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>

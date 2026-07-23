@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title || 'SCD | Panel Director' %></title>
+    <link rel="icon" href="#">
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="#">
+</head>
+<body>
+    <!-- Contenedor principal -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <%- include('../partials/sidebar', { usuario: usuario }) %>
+
+        <!-- Contenido principal -->
+        <main class="content">
+            <header>
+                <h1>Panel del Director</h1>
+                <p>COnsulta el estado general del Sistema de Control Documental.</p>
+            </header>
+
+            <!-- Tarjetas dinamicas -->
+            <section class="cards">
+                <div class="card">
+                    <i class="fa-solid fa-folder"></i>
+                    <div>
+                        <h2><%= estadisticas ? estadicticas.total : 0 %></h2>
+                        <p>Inventarios</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div>
+                        <h2><%= estadisticas ? estadisticas.aprobados : 0 %></h2>
+                        <p>Aprobados</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-clock"></i>
+                    <div>
+                        <h2><%= estadisticas ? estadisticas.pendientes : 0 %></h2>
+                        <p>Pendientes</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                    <div>
+                        <h2><%= estadisticas ? estadisticas.rechazados : 0 %></h2>
+                        <p>Rechazados</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tabla inventarios -->
+            <section class="table">
+                <div class="title">
+                    <h2>Ultimos Inventarios</h2>
+                </div>
+
+                <%- include('../partials/inventariosD', { usuario: usuario }) %>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal perfil -->
+    <%- include('../partials/modalPerfil', { usuario: usuario }) %>
+
+    <!-- Scripts -->
+    <script src="/public/js/sidebar.js"></script>
+    <script src="/public/js/modalPerfil.js"></script>
+</body>
+</html>

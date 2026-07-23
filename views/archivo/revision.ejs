@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title || 'SCD | Revision de Inventario' %></title>
+    <link rel=icon" href="#">
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="#">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <%- include('../partials/sidebar', { usuario: usuario, paginaActiva: 'archivo-revision' }) %>
+
+        <main class="content">
+            <header>
+                <h1>
+                    <i class="fa-solid fa-file-circle-check"></i>
+                    Revision de Inventarios
+                </h1>
+                <p>Inventarios enviados por los usuarios para su validacion.</p>
+            </header>
+        </main>
+    </div>
+
+    <!-- Modal perfil -->
+    <%- include('../partials/modalPerfil', { usuario: usuario }) %>
+
+    <!-- Scripts -->
+    <script src="/public/js/sidebar.js"></script>
+    <script src="/public/js/modalPerfil.js"></script>
+</body>
+</html>

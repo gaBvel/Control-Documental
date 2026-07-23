@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title || 'SCD | Panel Archivo' %></title>
+    <link rel="icon" href="#">
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="#">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Sidebar -->
+        <%- include('../partials/sidebar', { usuario: usuario, paginaActiva: 'archivo-inicio' }) %>
+
+        <main class="content">
+            <header>
+                <h1>Bienvenido, <%= usuario ? usuario.nombre: 'Usuario' %></h1>
+                <span>Panel de Archivo</span>
+            </header>
+
+            <!-- Tarjetas (pendiente) -->
+
+            <!-- Inventarios pendientes -->
+            <section class="table">
+                <div class="title">
+                    <h2>Inventarios pendientes de revision</h2>
+                </div>
+
+                <%- include('../partials/inventariosA', { usuario: usuario }) %>
+            </section>
+
+            <!-- Panel inferior -->
+            <section class="bottom-panel">
+                <!-- Actividad reciente -->
+                <div class="activity">
+                    <h3>Actividad Reciente</h3>
+                    <ul>
+                        <% if (typeof actividadReciente !== 'undefinied' && actividadReciente.length > 0) { %>
+                            <% actividadReciente.forEach(act => { %>
+                                <li>
+                                    <i class="fa-solid <%= act.icono %>"></i>
+                                    <%= act.descripcion %>
+                                </li>
+                            <% }) %>
+                        <% } else { %>
+                            <li>Sin actividades recientes.</li>
+                        <% } %>
+                    </ul>
+                </div>
+
+                <!-- Resumen -->
+                <div class="resume">
+                    <h3>Resumen</h3>
+                    <p><strong>Inventario recibidos:</strong> <%= resumen ? resumen.recibidos : 0 %></p>
+                    <p><strong>Pendientes:</strong> <%= resumen ? resumen.pendientes : 0 %></p>
+                    <p><strong>Aprobados:</strong> <%= resumen ? resumen.aprobados : 0 %></p>
+                    <p><strong>Rechazados:</strong> <%= resumen ? resumen.rechazados : 0 %></p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal perfil -->
+    <%- include('../partials/modalPerfil', { usuario: usuario }) %>
+
+    <!-- Scripts -->
+    <script src="/public/js/sidebar.js"></script>
+    <script src="/public/js/modalPerfil.js"></script>
+</body>
+</html>

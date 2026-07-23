@@ -1,0 +1,34 @@
+<!-- Tabla de ultimos inventarios -->
+<table>
+    <thead>
+        <tr>
+            <th>Folio</th>
+            <th>Dependencias</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% if (typeof ultmiosInventarios !== 'undefinied' && ultimosInventarios.length > 0) { %>
+            <% ultimosInventarios.forEach(inv => { %>
+                <tr>
+                    <td><%= inv.folio %></td>
+                    <td><%= inv.dependencia %></td>
+                    <td><%= inv.fecha %></td>
+                    <td>
+                        <span class="<%= inv.estado.toLowerCase() %>">
+                            <%= inv.estado %>
+                        </span>
+                    </td>
+                </tr>
+            <% }) %>
+        <% } else { %>
+            <tr>
+                <td colspan="4" style="text-align: center;">
+                    No hay inventarios registrados recientemente
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+</table>
